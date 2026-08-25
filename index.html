@@ -3,113 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Interactive Mac Website</title>
+    <title>My Personal Blog</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             background-color: #f5f5f7; 
             color: #1d1d1f; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
-            transition: background-color 0.4s ease;
+            line-height: 1.6;
         }
-        .card { 
+        /* Header & Navigation */
+        header { 
             background: #ffffff; 
-            padding: 40px; 
-            border-radius: 18px; 
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
-            text-align: center; 
-            max-width: 420px; 
-            width: 90%;
+            border-bottom: 1px solid #e8e8ed; 
+            padding: 20px 0; 
+            position: sticky; top: 0; z-index: 100;
         }
-        h1 { font-size: 28px; margin-bottom: 12px; }
-        p { font-size: 16px; color: #86868b; line-height: 1.5; margin-bottom: 24px; }
-        
-        /* Interactive Elements Styling */
-        .count-display { 
-            font-size: 48px; 
-            font-weight: bold; 
-            color: #0071e3; 
-            margin-bottom: 20px; 
+        .nav-container { 
+            max-width: 800px; margin: 0 auto; padding: 0 20px; 
+            display: flex; justify-content: space-between; align-items: center; 
         }
-        .btn-group { 
-            display: flex; 
-            gap: 10px; 
-            justify-content: center; 
-            flex-wrap: wrap; 
+        .site-title { font-size: 20px; font-weight: 700; color: #1d1d1f; text-decoration: none; }
+        nav a { color: #0071e3; text-decoration: none; font-weight: 500; margin-left: 20px; }
+
+        /* Blog Layout */
+        main { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        .hero { margin-bottom: 40px; text-align: center; }
+        .hero h1 { font-size: 36px; margin-bottom: 8px; }
+        .hero p { color: #86868b; font-size: 18px; }
+
+        /* Article Cards */
+        .post-card { 
+            background: #ffffff; 
+            border-radius: 16px; 
+            padding: 28px; 
+            margin-bottom: 24px; 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        button { 
-            background-color: #0071e3; 
-            color: #ffffff; 
-            border: none; 
-            padding: 12px 20px; 
-            font-size: 15px; 
-            font-weight: 500; 
-            border-radius: 980px; 
-            cursor: pointer; 
-            transition: transform 0.1s ease, background-color 0.2s ease;
+        .post-card:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08); 
         }
-        button:hover { background-color: #0077ed; }
-        button:active { transform: scale(0.96); }
-        .btn-secondary { background-color: #e8e8ed; color: #1d1d1f; }
-        .btn-secondary:hover { background-color: #d2d2d7; }
+        .post-date { font-size: 13px; color: #86868b; font-weight: 600; text-transform: uppercase; margin-bottom: 8px; }
+        .post-title { font-size: 22px; margin-bottom: 12px; }
+        .post-title a { color: #1d1d1f; text-decoration: none; }
+        .post-title a:hover { color: #0071e3; }
+        .post-excerpt { color: #424245; margin-bottom: 16px; }
+        .read-more { color: #0071e3; text-decoration: none; font-weight: 600; font-size: 15px; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1 id="heading">Interactive Dashboard</h1>
-        <p id="subtext">Click the buttons below to trigger dynamic JavaScript actions.</p>
-        
-        <!-- Dynamic Elements -->
-        <div class="count-display" id="counter">0</div>
-        
-        <!-- Interactive Buttons -->
-        <div class="btn-group">
-            <button id="increment-btn">Add +1</button>
-            <button id="theme-btn" class="btn-secondary">Toggle Background</button>
-            <button id="reset-btn" class="btn-secondary">Reset</button>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="site-title">My Tech & Thoughts</a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="#about">About</a>
+            </nav>
         </div>
-    </div>
+    </header>
 
-    <!-- JavaScript Goes Here -->
-    <script>
-        // 1. Select the HTML elements using their unique IDs
-        const counterDisplay = document.getElementById('counter');
-        const incrementBtn = document.getElementById('increment-btn');
-        const themeBtn = document.getElementById('theme-btn');
-        const resetBtn = document.getElementById('reset-btn');
-        const heading = document.getElementById('heading');
+    <main>
+        <section class="hero">
+            <h1>Welcome to My Blog</h1>
+            <p>Notes on web development, tech setups, and personal projects.</p>
+        </section>
 
-        // 2. Define state variables
-        let count = 0;
-        let isDarkTheme = false;
+        <!-- Blog Post Card 1 -->
+        <article class="post-card">
+            <div class="post-date">August 25, 2026</div>
+            <h2 class="post-title"><a href="post1.html">Building a Blog on a MacBook from Scratch</a></h2>
+            <p class="post-excerpt">How I built and published a responsive, free blog using HTML, CSS, and GitHub Pages on macOS.</p>
+            <a href="post1.html" class="read-more">Read Full Post →</a>
+        </article>
 
-        // 3. Feature 1: Counter Logic
-        incrementBtn.addEventListener('click', function() {
-            count += 1;
-            counterDisplay.textContent = count;
-        });
-
-        // 4. Feature 2: Dynamic Theme Switcher
-        themeBtn.addEventListener('click', function() {
-            isDarkTheme = !isDarkTheme;
-            if (isDarkTheme) {
-                document.body.style.backgroundColor = '#1c1c1e';
-            } else {
-                document.body.style.backgroundColor = '#f5f5f7';
-            }
-        });
-
-        // 5. Feature 3: Reset State
-        resetBtn.addEventListener('click', function() {
-            count = 0;
-            counterDisplay.textContent = count;
-            document.body.style.backgroundColor = '#f5f5f7';
-            isDarkTheme = false;
-        });
-    </script>
+        <!-- Blog Post Card 2 -->
+        <article class="post-card">
+            <div class="post-date">August 20, 2026</div>
+            <h2 class="post-title"><a href="post2.html">My Top Visual Studio Code Extensions</a></h2>
+            <p class="post-excerpt">A breakdown of essential tools that speed up frontend development and simplify code editing.</p>
+            <a href="post2.html" class="read-more">Read Full Post →</a>
+        </article>
+    </main>
 </body>
 </html>
