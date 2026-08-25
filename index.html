@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First Website</title>
+    <title>My Interactive Mac Website</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
@@ -14,6 +14,7 @@
             justify-content: center; 
             align-items: center; 
             min-height: 100vh; 
+            transition: background-color 0.4s ease;
         }
         .card { 
             background: #ffffff; 
@@ -21,16 +22,94 @@
             border-radius: 18px; 
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
             text-align: center; 
-            max-width: 400px; 
+            max-width: 420px; 
+            width: 90%;
         }
         h1 { font-size: 28px; margin-bottom: 12px; }
-        p { font-size: 16px; color: #86868b; line-height: 1.5; }
+        p { font-size: 16px; color: #86868b; line-height: 1.5; margin-bottom: 24px; }
+        
+        /* Interactive Elements Styling */
+        .count-display { 
+            font-size: 48px; 
+            font-weight: bold; 
+            color: #0071e3; 
+            margin-bottom: 20px; 
+        }
+        .btn-group { 
+            display: flex; 
+            gap: 10px; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+        }
+        button { 
+            background-color: #0071e3; 
+            color: #ffffff; 
+            border: none; 
+            padding: 12px 20px; 
+            font-size: 15px; 
+            font-weight: 500; 
+            border-radius: 980px; 
+            cursor: pointer; 
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+        button:hover { background-color: #0077ed; }
+        button:active { transform: scale(0.96); }
+        .btn-secondary { background-color: #e8e8ed; color: #1d1d1f; }
+        .btn-secondary:hover { background-color: #d2d2d7; }
     </style>
 </head>
 <body>
     <div class="card">
-        <h1>Hello World!</h1>
-        <p>My website is officially live and hosted for free via GitHub Pages.</p>
+        <h1 id="heading">Interactive Dashboard</h1>
+        <p id="subtext">Click the buttons below to trigger dynamic JavaScript actions.</p>
+        
+        <!-- Dynamic Elements -->
+        <div class="count-display" id="counter">0</div>
+        
+        <!-- Interactive Buttons -->
+        <div class="btn-group">
+            <button id="increment-btn">Add +1</button>
+            <button id="theme-btn" class="btn-secondary">Toggle Background</button>
+            <button id="reset-btn" class="btn-secondary">Reset</button>
+        </div>
     </div>
+
+    <!-- JavaScript Goes Here -->
+    <script>
+        // 1. Select the HTML elements using their unique IDs
+        const counterDisplay = document.getElementById('counter');
+        const incrementBtn = document.getElementById('increment-btn');
+        const themeBtn = document.getElementById('theme-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const heading = document.getElementById('heading');
+
+        // 2. Define state variables
+        let count = 0;
+        let isDarkTheme = false;
+
+        // 3. Feature 1: Counter Logic
+        incrementBtn.addEventListener('click', function() {
+            count += 1;
+            counterDisplay.textContent = count;
+        });
+
+        // 4. Feature 2: Dynamic Theme Switcher
+        themeBtn.addEventListener('click', function() {
+            isDarkTheme = !isDarkTheme;
+            if (isDarkTheme) {
+                document.body.style.backgroundColor = '#1c1c1e';
+            } else {
+                document.body.style.backgroundColor = '#f5f5f7';
+            }
+        });
+
+        // 5. Feature 3: Reset State
+        resetBtn.addEventListener('click', function() {
+            count = 0;
+            counterDisplay.textContent = count;
+            document.body.style.backgroundColor = '#f5f5f7';
+            isDarkTheme = false;
+        });
+    </script>
 </body>
 </html>
